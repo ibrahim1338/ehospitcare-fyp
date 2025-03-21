@@ -17,7 +17,7 @@ On terminal:
 i. cd server
 ii. node
 iii. const func = require('./startup')
-iv. func("Pia Catriona","piacat@gmail.com","admin","Admin","Warri Nigeria","08119238643","password")
+iv. func("Ibrahim","ibrahim@gmail.com","admin","Admin","Narowal Pakistan","03123456789","password")
 
 On terminal:
 i. cd client
@@ -41,7 +41,7 @@ i. Change the mongoDB connection to the one provided by your hosting platform
 
 C. Create a .env file in the backend folder
 i. Inside the .env file create a JWT_SECRET
-(example ==> JWT_SECRET = yubrw8we46684678346463hebhfch8irhwgdyw3y)
+(example ==> JWT_SECRET = this_is_secret)
 
 On terminal:
 i. cd client
