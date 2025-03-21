@@ -1,20 +1,20 @@
-# Backend-Hospital-Management-Software-Source-Code
+# Backend
 FOR LOCAL
-A. On axios.js file
+A. On axios.js file in front-end/src/services/axios.js
 i. Change or confirm the baseURL
 (example ==> baseURL: 'http://localhost:3000')
 
-B. On db.js file
+B. On db.js file in backend/config/db.js
 i. Change OR confirm the mongoDB connection
 (example ==> return await mongoose.connect('mongodb://localhost:27017/hospital'))
 
 C. Create a .env file in the backend folder
 i. Inside the .env file create a JWT_SECRET
-(example ==> JWT_SECRET = yubrw8we46684678346463hebhfch8irhwgdyw3y)
+(example ==> JWT_SECRET = this_is_secret)
 
-...To create first Admin
+...To create first Admin, make sure to follow these steps:
 On terminal:
-i. cd server
+i. cd backend
 ii. node
 iii. const func = require('./startup')
 iv. func("Ibrahim","ibrahim@gmail.com","admin","Admin","Narowal Pakistan","03123456789","password")
@@ -24,27 +24,7 @@ i. cd client
 ii. npm run dev
 
 On another terminal:
-i. cd server
-ii. npm start
+i. cd backend
+ii. npm run dev
 
 
-
-FOR PRODUCTION
-
-A. On axios.js file
-i. Change the baseURL to the one provided by your hosting platform
-(example ==> baseURL: 'https://hospitalmanagement-production.up.railway.app/')
-
-B. On db.js file
-i. Change the mongoDB connection to the one provided by your hosting platform
-(example ==> return await mongoose.connect('mongodb+srv://trey:treysteve@cluster0.wuabtba.mongodb.net/?retryWrites=true&w=majority'))
-
-C. Create a .env file in the backend folder
-i. Inside the .env file create a JWT_SECRET
-(example ==> JWT_SECRET = this_is_secret)
-
-On terminal:
-i. cd client
-ii. npm run build (this will create a 'dist' folder which would then be hosted on a hosting platform of your choice--preferably VERCEL)
-
-The server folder(backend) should preferably be hosted on RAILWAY
