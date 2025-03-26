@@ -34,7 +34,14 @@ const patientValidator = Joi.object({
     phone: Joi.string().max(200).required().messages({'string.empty': 'Phone number is required'}),
     sex: Joi.string().max(200).required().messages({'string.empty': 'Gender is required'}),
     dob: Joi.string().max(200).required().messages({'string.empty': 'Date of birth is required'}),
-    age: Joi.string().max(200).required().messages({'string.empty': 'Age is required'}),
+    age: Joi.number().integer().min(0).max(120).required()
+        .messages({
+            'number.base': 'Age must be a number',
+            'number.integer': 'Age must be a whole number',
+            'number.min': 'Age cannot be negative',
+            'number.max': 'Age must be less than 120',
+            'any.required': 'Age is required'
+        }),
     bloodgroup: Joi.string().min(0).max(200),
     tor: Joi.string().max(200).required().messages({'string.empty': 'Time of registration is required'}),
     registrationId: Joi.string().max(200).required().messages({'string.empty': 'Registration Id is required'}),

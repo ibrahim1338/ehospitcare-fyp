@@ -40,8 +40,33 @@ function Patients({ role }) {
     bloodgroup: "",
     tor: "",
   });
+
+  const calculateAge = (dob) => {
+    if (!dob) return "";
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let calculatedAge = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      calculatedAge--;
+    }
+    return calculatedAge;
+  };
+
   function handleChange(e) {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    
+    if (name === "dob") {
+      const calculatedAge = calculateAge(value);
+      setFormData(prev => ({
+        ...prev,
+        dob: value,
+        age: calculatedAge
+      }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   }
 
   function getPatients() {
@@ -55,34 +80,40 @@ function Patients({ role }) {
       });
   }
 
-  // CREATE
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    
+    // Ensure age is sent as a number
+    const payload = {
+      ...formData,
+      age: parseInt(formData.age)
+    };
+
     axios
-      .post("/patient", {
-        name: formData?.name,
-        email: formData?.email,
-        address: formData?.address,
-        phone: formData?.phone,
-        sex: formData?.sex,
-        dob: formData?.dob,
-        age: formData?.age,
-        bloodgroup: formData?.bloodgroup,
-        tor: formData?.tor,
-      })
+      .post("/patient", payload)
       .then((res) => {
         setLoading(false);
         getPatients();
+        setFormData({
+          name: "",
+          email: "",
+          address: "",
+          phone: "",
+          sex: "",
+          dob: "",
+          age: "",
+          bloodgroup: "",
+          tor: "",
+        });
         toast.success(res.data);
       })
       .catch((err) => {
         setLoading(false);
-        toast.error(err.response.data);
+        toast.error(err.response?.data || "An error occurred");
       });
   };
 
-  // READ : READ : READ : READ
   const [patients, setPatients] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -90,7 +121,6 @@ function Patients({ role }) {
     getPatients();
   }, []);
 
-  // SEARCH
   const search = (data) => {
     axios.get(`/patient?q=${data}`).then((response) => {
       setPatients(response.data);
@@ -98,8 +128,6 @@ function Patients({ role }) {
     });
   };
 
-  // PAGINATION
-  // Get Current Posts
   const postsPerPage = 10;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -119,10 +147,7 @@ function Patients({ role }) {
             <SearchInput onSearch={search} />
             <div className="items-center flex flex-col lg:flex-row">
               <TotalNo totalnumber={patients?.length} />
-              <ReactPagination
-                pageCount={pageCount}
-                handlePageClick={handlePageClick}
-              />
+              <ReactPagination pageCount={pageCount} handlePageClick={handlePageClick} />
             </div>
           </div>
           <Table>
@@ -149,17 +174,11 @@ function Patients({ role }) {
                   <Td>{patient?.bloodgroup}</Td>
                   <Td>{patient?.tor}</Td>
                   <OptionsTd>
-                    <EditButton
-                      editFunction={`${role}/edit_patient?edit=${patient?._id}`}
-                    >
+                    <EditButton editFunction={`${role}/edit_patient?edit=${patient?._id}`}>
                       Edit
                       <RiEdit2Line />
                     </EditButton>
-                    <DeleteButton
-                      path={"patient"}
-                      id={patient?._id}
-                      record={getPatients}
-                    >
+                    <DeleteButton path={"patient"} id={patient?._id} record={getPatients}>
                       Delete
                       <MdDeleteForever />
                     </DeleteButton>
@@ -174,52 +193,18 @@ function Patients({ role }) {
       content2={
         <FormLayout formName="ADD PATIENT">
           <form onSubmit={handleSubmit}>
-            <Input
-              label="Name"
-              type="text"
-              name="name"
-              onChange={handleChange}
-            />
-            <Input
-              label="Email"
-              type="email"
-              name="email"
-              onChange={handleChange}
-            />
-            <Input
-              label="Address"
-              type="text"
-              name="address"
-              onChange={handleChange}
-            />
-            <Input
-              label="Phone Number"
-              type="text"
-              name="phone"
-              onChange={handleChange}
-            />
-            <Select label="Sex" name="sex" onChange={handleChange}>
+            <Input label="Name" type="text" name="name" value={formData.name} onChange={handleChange} required />
+            <Input label="Email" type="email" name="email" value={formData.email} onChange={handleChange} required />
+            <Input label="Address" type="text" name="address" value={formData.address} onChange={handleChange} required />
+            <Input label="Phone Number" type="text" name="phone" value={formData.phone} onChange={handleChange} required />
+            <Select label="Sex" name="sex" value={formData.sex} onChange={handleChange} required>
               <option value="">Select Sex</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </Select>
-            <Input
-              label="Date of Birth"
-              type="date"
-              name="dob"
-              onChange={handleChange}
-            />
-            <Input
-              label="Age"
-              type="number"
-              name="age"
-              onChange={handleChange}
-            />
-            <Select
-              label="Blood Group"
-              name="bloodgroup"
-              onChange={handleChange}
-            >
+            <Input label="Date of Birth" type="date" name="dob" value={formData.dob} onChange={handleChange} required />
+            <Input label="Age" type="number" name="age" value={formData.age} readOnly />
+            <Select label="Blood Group" name="bloodgroup" value={formData.bloodgroup} onChange={handleChange} required>
               <option value="">Select Blood Group</option>
               <option value="A+">A+</option>
               <option value="A-">A-</option>
@@ -230,12 +215,7 @@ function Patients({ role }) {
               <option value="O+">O+</option>
               <option value="O-">O-</option>
             </Select>
-            <Input
-              label="Time Of Registration"
-              type="datetime-local"
-              name="tor"
-              onChange={handleChange}
-            />
+            <Input label="Time Of Registration" type="datetime-local" name="tor" value={formData.tor} onChange={handleChange} required />
             <Button>{loading ? <ButtonPreloader /> : "Add Patient"}</Button>
           </form>
         </FormLayout>

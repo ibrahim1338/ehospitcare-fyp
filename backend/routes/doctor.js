@@ -26,16 +26,47 @@ const paymentsController = new CrudService(Payments, PaymentsValidator)
 
 // PATIENT : PATIENT : PATIENT : PATIENT : PATIENT
 // CREATE_PATIENTS
-router.post('/patient',async function(req, res, next) {
-    try {
-        const {name, email, address, phone, sex, dob, age, bloodgroup, tor} = req.body
-        const date = new Date();
-        const registrationId = date.getFullYear() + "-" + randomBytes(2).toString("hex")
-        await PatientController.create({name, email, address, phone, sex, dob, age, bloodgroup, tor, registrationId})
-        return res.status(200).send('Added Successfully')
-    } catch (error) {
-        return res.status(401).send(error.message)
-    }
+
+router.post('/patient', async function(req, res, next) {
+  try {
+      let { name, email, address, phone, sex, dob, age, bloodgroup, tor } = req.body;
+      
+      // Calculate age from DOB if not provided
+      if (dob && !age) {
+          const birthDate = new Date(dob);
+          const today = new Date();
+          age = today.getFullYear() - birthDate.getFullYear();
+          const monthDiff = today.getMonth() - birthDate.getMonth();
+          
+          if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+              age--;
+          }
+      }
+
+      // Convert age to number if it's a string
+      age = typeof age === 'string' ? parseInt(age) : age;
+
+      // Generate registration ID
+      const today = new Date();
+      const registrationId = today.getFullYear() + "-" + randomBytes(2).toString('hex');
+
+      await PatientController.create({ 
+          name, 
+          email, 
+          address, 
+          phone, 
+          sex, 
+          dob, 
+          age, 
+          bloodgroup, 
+          tor, 
+          registrationId 
+      });
+
+      return res.status(200).send('Added Successfully');
+  } catch (error) {
+      return res.status(401).send(error.message);
+  }
 });
 // READ_PATIENT
 router.get('/patient', async function(req, res, next) {

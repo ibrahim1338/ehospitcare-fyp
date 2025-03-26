@@ -146,7 +146,7 @@ function DispatchBlood({ role }) {
                   <Td>{dispatch?.bloodgroup}</Td>
                   <Td>{dispatch?.bags}</Td>
                   <Td>
-                    <span>&#8358;</span>
+                    <span>Rs. </span>
                     {dispatch?.charges}
                   </Td>
                   <Td>{dispatch?.date}</Td>
