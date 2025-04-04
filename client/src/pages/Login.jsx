@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { AiOutlineCamera } from "react-icons/Ai";
 import bedbg from "../assets/doctor-g54d4d9aa7_1920.jpg";
 import { MdEmail } from "react-icons/md";
 import { MdAddIcCall } from "react-icons/md";
@@ -122,7 +121,6 @@ function Login() {
               </a>
               <a className="flex gap-2 items-center " href="/adminScreenshots">
                 <span>
-                  {React.createElement(AiOutlineCamera, { size: "20" })}
                 </span>
                 View Admin Panel Screenshots
               </a>
