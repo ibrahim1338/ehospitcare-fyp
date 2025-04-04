@@ -4,11 +4,11 @@ import { MdOutlineDashboardCustomize, MdLocalPharmacy } from "react-icons/md";
 import { IoIosPeople } from "react-icons/Io";
 import { FaUserNurse } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/Gi";
-import { AiOutlineSetting } from "react-icons/Ai";
+// import { AiOutlineSetting } from "react-icons/Ai";
 import { FcAssistant } from "react-icons/Fc";
 import { BiCylinder } from "react-icons/bi";
 import { GiNurseMale } from "react-icons/Gi";
-import { AiOutlineGitlab } from "react-icons/Ai";
+// import { AiOutlineGitlab } from "react-icons/Ai";
 import { FaBaby } from "react-icons/fa";
 import { CgCross } from "react-icons/cg";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
@@ -57,7 +57,7 @@ function AdminSidebar({ children }) {
     { name: "Operation", link: "/admin/operations", icon: AiOutlineGitlab },
     { name: "Birth Report", link: "/admin/births", icon: FaBaby },
     { name: "Death Report", link: "/admin/deaths", icon: CgCross },
-    { name: "Profile", link: "/admin/profile", icon: AiOutlineSetting },
+    { name: "Profile", link: "/admin/profile", icon: IoIosPeople },
   ];
 
   return (

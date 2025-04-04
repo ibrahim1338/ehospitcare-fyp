@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { GiMoneyStack } from "react-icons/Gi";
-import { AiOutlineSetting } from "react-icons/Ai";
+// import { AiOutlineSetting } from "react-icons/Ai";
 import { BsEyeFill } from "react-icons/bs";
 import { FaFileInvoice } from "react-icons/fa";
 import { GiNurseMale } from "react-icons/Gi";
@@ -56,7 +56,7 @@ function AccountantSidebar({ children }) {
       link: "/accountant/viewpayments",
       icon: BsEyeFill,
     },
-    { name: "Profile", link: "/accountant/profile", icon: AiOutlineSetting },
+    { name: "Profile", link: "/accountant/profile", icon: MdOutlineDashboardCustomize },
   ];
 
   return (

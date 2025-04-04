@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { IoIosPeople } from "react-icons/Io";
-import { AiOutlineSetting } from "react-icons/Ai";
+// import { AiOutlineSetting } from "react-icons/Ai";
 import { MdQueue } from "react-icons/md";
 import { BiTime } from "react-icons/bi";
 import { GiNurseMale } from "react-icons/Gi";
@@ -44,7 +44,7 @@ function ReceptionistSidebar({ children }) {
     { name: "Patients", link: "/receptionist/patients", icon: IoIosPeople },
     { name: "Queue", link: "/receptionist/queue", icon: MdQueue },
     { name: "Appointments", link: "/receptionist/appointments", icon: BiTime },
-    { name: "Profile", link: "/receptionist/profile", icon: AiOutlineSetting },
+    { name: "Profile", link: "/receptionist/profile", icon: IoIosPeople },
   ];
 
   return (

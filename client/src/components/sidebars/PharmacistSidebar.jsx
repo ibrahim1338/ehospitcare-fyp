@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { IoIosPeople } from "react-icons/Io";
-import { AiOutlineSetting } from "react-icons/Ai";
+// import { AiOutlineSetting } from "react-icons/Ai";
 import { GiMedicines } from "react-icons/Gi";
 import { GiNurseMale } from "react-icons/Gi";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";

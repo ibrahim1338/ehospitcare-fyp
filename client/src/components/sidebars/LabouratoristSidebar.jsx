@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboardCustomize, MdLocalPharmacy } from "react-icons/md";
-import { AiOutlineSetting } from "react-icons/Ai";
+// import { AiOutlineSetting } from "react-icons/Ai";
 import { BiDonateBlood } from "react-icons/bi";
 import { MdOutlineBloodtype } from "react-icons/md";
-import { AiOutlineBank } from "react-icons/Ai";
+// import { AiOutlineBank } from "react-icons/Ai";
 import { GiNurseMale } from "react-icons/Gi";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { loginContext } from "../../pages/context/auth";

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AiOutlineSetting } from "react-icons/Ai";
+// import { AiOutlineSetting } from "react-icons/Ai";
 import { loginContext } from "../../pages/context/auth";
 import axios from "../../services/axios";
 import { useNavigate } from "react-router-dom";
@@ -80,7 +80,8 @@ function Profile() {
         </div>
         <div className="bg-indigo-200 w-full p-8 rounded-lg">
           <h1 className="mb-8 font-bold text-black text-2xl flex items-center gap-2">
-            {React.createElement(AiOutlineSetting, { size: "25" })}PROFILE
+            {/* {React.createElement(AiOutlineSetting, { size: "25" })} */}
+            PROFILE
           </h1>
           <form onSubmit={updateProfile}>
             <div className="flex items-center gap-4 mb-4">
@@ -141,7 +142,8 @@ function Profile() {
       <div className="lg:px-8 pb-8 pt-8 lg:pt-0">
         <div className="bg-indigo-200 w-full p-8 rounded-lg">
           <h1 className="mb-8 font-bold text-black text-2xl flex items-center gap-2">
-            {React.createElement(AiOutlineSetting, { size: "25" })}CHANGE
+            {/* {React.createElement(AiOutlineSetting, { size: "25" })} */}
+            CHANGE
             PASSWORD
           </h1>
           <form onSubmit={updatePassword}>
