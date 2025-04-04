@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AiOutlineCamera } from "react-icons/Ai";
-import { AiOutlineFolderOpen } from "react-icons/Ai";
 import bedbg from "../assets/doctor-g54d4d9aa7_1920.jpg";
 import { MdEmail } from "react-icons/md";
 import { MdAddIcCall } from "react-icons/md";
